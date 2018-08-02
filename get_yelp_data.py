@@ -188,7 +188,7 @@ def get_pictures():
 
     return(picture_links)
 
-print(get_pictures())
+# print(get_pictures())
 
 
 def get_total_pic_pages():
@@ -205,8 +205,7 @@ def get_total_pic_pages():
 
 print(get_total_pic_pages())
 
-def get_total_pics():
-    pass
+
 
 
 def go_to_next_page_pics(current_page):
@@ -216,6 +215,18 @@ def go_to_next_page_pics(current_page):
 def get_pic_description():
     pass
 
+def get_link_to_pic_slideshow():
+    raw_html_pics = simple_get(get_url_to_pics())
+    html_pics = BeautifulSoup(raw_html_pics, 'html.parser')
+    first_pic_link = html_pics.find("div", class_="photo-box--interactive").a["href"]
+    first_pic_link = get_url_to_pics() + first_pic_link
+
+    return(first_pic_link)
+
+# print(get_link_to_pic_slideshow())
+
+def get_total_pics():
+    pass
 
     
 
