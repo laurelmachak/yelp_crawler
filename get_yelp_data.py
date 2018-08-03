@@ -181,14 +181,20 @@ def get_pictures():
     raw_html_pics = simple_get(get_url_to_pics())
     html_pics = BeautifulSoup(raw_html_pics, 'html.parser')
 
-    picture_links = html_pics.find_all("img", class_="photo-box-img")
+    list_of_pic_urls = []
 
-    for link in range(len(picture_links)):
-        picture_links[link] = picture_links[link]["src"]
+    # picture_links = html_pics.find_all("img", class_="photo-box-img")
+    # for link in range(len(picture_links)):
+    #     picture_links[link] = picture_links[link]["src"]
 
-    return(picture_links)
+    # return(picture_links)
 
-# print(get_pictures())
+    for tag in html_pics.find_all("div", class_="photo-box--interactive"):
+        list_of_pic_urls.append(tag.img["src"])
+
+    return(list_of_pic_urls)
+
+print(len(get_pictures()))
 
 
 def get_total_pic_pages():
