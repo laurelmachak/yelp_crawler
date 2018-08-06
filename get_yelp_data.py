@@ -15,8 +15,10 @@ html = BeautifulSoup(raw_html, 'html.parser')
 
 
 def get_business_website():
-    business_url = html.find("span", class_="biz-website")
-    return(business_url.contents[3].contents)
+    # business_url = html.find("span", class_="biz-website")
+    # return(business_url.contents[3].contents)
+    business_url = html.find("span", class_="biz-website").a.text
+    return(business_url)
 
 print(get_business_website())
 
@@ -188,6 +190,8 @@ def get_pictures():
     #     picture_links[link] = picture_links[link]["src"]
 
     # return(picture_links)
+
+    # could also probs use li with class 'data-photo-id' 
 
     for tag in html_pics.find_all("div", class_="photo-box--interactive"):
         list_of_pic_urls.append(tag.img["src"])
